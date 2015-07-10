@@ -2,7 +2,7 @@ var express = require('express');
 var fs = require('fs');
 var mysql = require('mysql');
 var path = require('path');
-var moment = require('moment');
+var momentTimezone = require('moment-timezone');
 var _ = require('underscore');
 
 var router = express.Router();
@@ -25,7 +25,7 @@ router.get('/:start/:end', function(request, response, next) {
         {
             var timeChangedResults = _.map(results, function(result)
                           {
-                result.time = moment(result.time).tz('kst').format();
+                result.time = momentTimezone(result.time).tz('kst').format();
                 return result;
             });
 
