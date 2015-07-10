@@ -96,10 +96,10 @@ router.post('/', function(request, response, next) {
 });
 
 //회원가입사진
-router.post('/photo/:userid', function(request, response, next) {
+router.post('/photo', function(request, response, next) {
     console.log("회원가입-사진 중");
     var userimg = request.files;
-    var userid = request.params.userid;
+    var userid = request.body.userid;
     console.log(request.body);
     console.log(userimg);
     console.log(userid);
