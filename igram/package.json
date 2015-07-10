@@ -13,9 +13,11 @@
     "express": "~4.12.2",
     "express-logger": "0.0.3",
     "express-session": "^1.11.3",
+    "moment": "^2.10.3",
     "morgan": "~1.5.1",
     "multer": "^0.1.8",
     "node-uuid": "^1.4.3",
-    "serve-favicon": "~2.2.0"
+    "serve-favicon": "~2.2.0",
+    "underscore": "^1.8.3"
   }
 }

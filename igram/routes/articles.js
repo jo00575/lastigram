@@ -2,6 +2,8 @@ var express = require('express');
 var fs = require('fs');
 var mysql = require('mysql');
 var path = require('path');
+var moment = require('moment');
+var _ = require('underscore');
 
 var router = express.Router();
 var connection = mysql.createConnection({
@@ -16,11 +18,19 @@ router.get('/:start/:end', function(request, response, next) {
     var start = request.params.start;
     var end = request.params.end;
     
-	connection.query('SELECT article.id, article.month, article.img, article.time, article.title, article.context, user.nick, user.userimg FROM article LEFT OUTER JOIN user ON article.userid=user.userid WHERE article.month>=? AND article.month<=? ORDER BY time DESC;', [start, end], function (err, result) {
+	connection.query('SELECT article.id, article.month, article.img, article.time, article.title, article.context, user.nick, user.userimg FROM article LEFT OUTER JOIN user ON article.userid=user.userid WHERE article.month>=? AND article.month<=? ORDER BY time DESC;', [start, end], function (err, results) {
         if (err)
 			response.send(err);
         else
-            response.json(result);
+        {
+            var timeChangedResults = _.map(results, function(result)
+                          {
+                result.time = moment.utc(result.time).tz('kst').format();
+                return result;
+            });
+
+            response.json(timeChangedResults);
+        }
 	});
 });
 //내 피드보기
