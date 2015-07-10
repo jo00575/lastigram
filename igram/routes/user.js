@@ -15,9 +15,9 @@ var connection = mysql.createConnection({
 router.post('/login', function(request, response, next) {
     var result = {};
     
-    if (request.session.key != undefined){
-        console.log("세션이 이미 존재함.");
-        response.sendStatus(401);
+    if (request.session.userid != undefined){
+        request.session.destroy();
+		result.expired = true;
     }
 
     else{
