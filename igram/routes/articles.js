@@ -25,7 +25,7 @@ router.get('/:start/:end', function(request, response, next) {
         {
             var timeChangedResults = _.map(results, function(result)
                           {
-                result.time = moment.utc(result.time).tz('kst').format();
+                result.time = moment(result.time).tz('kst').format();
                 return result;
             });
 
