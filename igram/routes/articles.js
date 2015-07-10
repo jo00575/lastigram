@@ -17,7 +17,7 @@ router.get('/:start/:end', function(request, response, next) {
     console.log("피드재조정");
     var start = request.params.start;
     var end = request.params.end;
-    
+
 	connection.query('SELECT article.id, article.month, article.img, article.time, article.title, article.context, user.nick, user.userimg FROM article LEFT OUTER JOIN user ON article.userid=user.userid WHERE article.month>=? AND article.month<=? ORDER BY time DESC;', [start, end], function (err, results) {
         if (err)
 			response.send(err);
@@ -25,7 +25,7 @@ router.get('/:start/:end', function(request, response, next) {
         {
             var timeChangedResults = _.map(results, function(result)
                           {
-                result.time = momentTimezone(result.time).tz('Asia/Seoul').format();
+                result.time = momentTimezone.tz(result.time, 'Asia/Seoul').format();
                 return result;
             });
 
