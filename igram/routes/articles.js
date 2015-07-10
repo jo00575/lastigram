@@ -49,7 +49,7 @@ router.post('/', function(request, response, next) {
     var context = request.body.context;
     var month = request.body.month;
     var title = request.body.title;
-    var userid = request.session.userid;
+    var userid = request.body.userid;
     var img = request.files.files.path;
 
     console.log(userid+" 게시물작성중");
