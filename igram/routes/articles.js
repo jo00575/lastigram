@@ -25,7 +25,7 @@ router.get('/:start/:end', function(request, response, next) {
         {
             var timeChangedResults = _.map(results, function(result)
                           {
-                result.time = momentTimezone(result.time).tz('kst').format();
+                result.time = momentTimezone(result.time).tz('Asia/Seoul').format();
                 return result;
             });
 
