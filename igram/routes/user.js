@@ -20,12 +20,10 @@ router.post('/login', function(request, response, next) {
 		result.expired = true;
     }
 
-    else{
-        result.userid = request.session.userid = request.body.userid;
-        result.userpw = request.body.userpw = request.body.userpw;
-        console.log("로그인완료");
-        response.json(result);
-    }
+    result.userid = request.session.userid = request.body.userid;
+    result.userpw = request.body.userpw = request.body.userpw;
+    console.log(result.userid + " 로그인완료");
+    response.json(result);
 });
 
 router.get('/logout', function(request, response, next) {
