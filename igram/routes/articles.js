@@ -63,7 +63,7 @@ router.post('/', function(request, response, next) {
     ] , function(err, res) {
         if (err){
             response.send(err);
-            console.log("쿼리문 에러!!");
+            console.log("쿼리문 에러!!" + err);
         }
         else 
         {
